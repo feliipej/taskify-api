@@ -52,7 +52,7 @@ public class UsuarioController {
     public ResponseEntity<Usuario> atualizarUsuario(@PathVariable("id") Long idUsuario, @RequestBody Usuario usuario) {
         Optional<Usuario> usuarioExistente = usuarioRepository.findById(idUsuario);
 
-        if (usuarioExistente.isPresent()) { // esse metodo torna um boleano se o usuário existe
+        if (usuarioExistente.isPresent()) { // metodo retorna um boleano, se o usuário existe
             return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.save(usuario));
         }
 
@@ -60,7 +60,13 @@ public class UsuarioController {
     }
 
     @GetMapping("/email")
-    public Optional<Usuario> buscarUsuarioPeloEmail(@RequestParam ("email") String email) {
-        return usuarioRepository.findByEmail(email);
+    public ResponseEntity<Optional<Usuario>> buscarUsuarioPeloEmail(@RequestParam ("email") String email) {
+        Optional<Usuario> usuarioExistente = usuarioRepository.findByEmail(email);
+
+        if (usuarioExistente.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(usuarioExistente);
+        }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 }

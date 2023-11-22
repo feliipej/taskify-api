@@ -9,5 +9,5 @@ public class TaskifyApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TaskifyApiApplication.class, args);
 	}
-
+	
 }
