@@ -2,6 +2,8 @@ package com.taskify.api.model;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

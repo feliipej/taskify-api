@@ -1,9 +1,10 @@
 package com.taskify.api.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,8 +33,8 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> listaUsuarios() {
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.findAll());
+    public ResponseEntity<Page<Usuario>> listaUsuarios(Pageable paginacao) {
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.findAll(paginacao));
     }
 
     @GetMapping("{id}")
