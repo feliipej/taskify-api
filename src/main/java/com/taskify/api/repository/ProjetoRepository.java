@@ -12,6 +12,6 @@ import com.taskify.api.model.Projeto;
 
 public interface ProjetoRepository extends JpaRepository<Projeto, Long> {
     
-    @Query("SELECT p FROM tb_projetos p WHERE p.responsavelTecnic.idUsuario = :id")
+    @Query("SELECT p FROM tb_projetos p WHERE p.responsavelTecnico.idUsuario = :id")
     Optional<List<Projeto>> findByResponsavelTecnico(@Param("id") Long idUsuario);
 }
