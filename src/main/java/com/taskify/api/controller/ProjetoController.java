@@ -48,12 +48,14 @@ public class ProjetoController {
         Optional<Projeto> projetoExistente = projetoRepository.findById(idProjeto);
 
         if (projetoExistente.isPresent()) {
-            projetoExistente.get().setNome(projeto.getNome());
-            projetoExistente.get().setDescricao(projeto.getDescricao());
-            projetoExistente.get().setResponsavelTecnico(projeto.getResponsavelTecnico());
-            projetoExistente.get().setParticipantes(projeto.getParticipantes());
+            return  ResponseEntity.status(HttpStatus.OK).body(projetoRepository.save(projeto));
 
-            return ResponseEntity.status(HttpStatus.OK).body(projetoRepository.save(projetoExistente.get()));
+//            projetoExistente.get().setNome(projeto.getNome());
+//            projetoExistente.get().setDescricao(projeto.getDescricao());
+//            projetoExistente.get().setResponsavelTecnico(projeto.getResponsavelTecnico());
+//            projetoExistente.get().setParticipantes(projeto.getParticipantes());
+//
+//            return ResponseEntity.status(HttpStatus.OK).body(projetoRepository.save(projetoExistente.get()));
         }
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
